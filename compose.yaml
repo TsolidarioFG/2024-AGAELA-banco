@@ -1,0 +1,31 @@
+services:
+    backend:
+        build: ./backend
+        depends_on:
+            - tfgproject_db
+        #extra_hosts:
+                #- "host.docker.internal:host-gateway"
+        ports:
+            - "8080:8080"
+
+    tfgproject_db:
+        image: postgres:16.2-alpine3.19
+        restart: always
+        environment:
+        - POSTGRES_USER=patricia
+        - POSTGRES_PASSWORD=patricia
+        - POSTGRES_DB=tfgproject
+        volumes:
+        - db_tfgproject:/var/lib/postgresql/data
+        - ./backend/src/sql:/docker-entrypoint-initdb.d
+
+    frontend:
+        build: ./frontend
+        depends_on:
+            - backend
+        ports:
+            - "3000:3000"
+
+volumes:
+    db_tfgproject:
+        driver: local

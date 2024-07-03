@@ -1,0 +1,34 @@
+
+spring:
+  application:
+    name: tfg-project-backend
+  datasource:
+    #host: host.docker.internal
+    host: tfgproject_db
+    port: 5432
+    database: tfgproject
+    username: patricia
+    password: patricia
+    url: jdbc:postgresql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.database}
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  jpa:
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: none #create ?
+  sql:
+    init:
+      encoding: UTF-8
+      mode: always
+      continue-on-error: false
+logging:
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+  level:
+   root: INFO
+   org.hibernate.SQL: INFO
+
+server.port: 8080
+
