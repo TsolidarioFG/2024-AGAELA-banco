@@ -71,7 +71,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEntity(@PathVariable Long id) throws InstanceNotFoundException {
+    public void deleteProduct(@PathVariable Long id) throws InstanceNotFoundException {
         productService.deleteProduct(id);
     }
 }

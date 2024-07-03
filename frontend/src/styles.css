@@ -26,19 +26,6 @@
     color: #FFFFFF;
 }
 
-.admin-buttons-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.button-space {
-    margin-right: 20px;
-    margin-bottom: 40px;
-}
-
 .button-principal {
     display: inline-block;
     border-radius: 20px;
@@ -181,17 +168,3 @@
     background-color: #ffffff;
     border: 1px solid #cccccc;
 }
-
-.search-list-container {
-    width: 90%;
-    marginTop: 20px;
-    alignItems: center;
-    margin: 0 auto;
-}
-
-@media screen and (min-width: 1024px) {
-    .search-list-container {
-        width: 70%;
-    }
-}
-

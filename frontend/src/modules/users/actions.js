@@ -20,8 +20,18 @@ const loginCompleted = authenticatedUser => ({
     authenticatedUser
 });
 
-export const login = (userName, password, onSuccess, onErrors, reauthenticationCallback) => dispatch =>
+/*export const login = (userName, password, onSuccess, onErrors, reauthenticationCallback) => dispatch =>
     backend.userService.login(userName, password,
+        authenticatedUser => {
+            dispatch(loginCompleted(authenticatedUser));
+            onSuccess();
+        },
+        onErrors,
+        reauthenticationCallback
+    );*/
+
+export const login = (login, password, onSuccess, onErrors, reauthenticationCallback) => dispatch =>
+    backend.userService.login(login, password,
         authenticatedUser => {
             dispatch(loginCompleted(authenticatedUser));
             onSuccess();
@@ -30,7 +40,7 @@ export const login = (userName, password, onSuccess, onErrors, reauthenticationC
         reauthenticationCallback
     );
 
-export const tryLoginFromServiceToken = reauthenticationCallback => dispatch =>
+/*export const tryLoginFromServiceToken = reauthenticationCallback => dispatch =>
     backend.userService.tryLoginFromServiceToken(
         authenticatedUser => {
             if (authenticatedUser) {
@@ -38,7 +48,7 @@ export const tryLoginFromServiceToken = reauthenticationCallback => dispatch =>
             }
         },
         reauthenticationCallback
-    );
+    );*/
     
 
 export const logout = () => {

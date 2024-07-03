@@ -17,9 +17,6 @@ const EntityAdmin = () => {
         dispatch(actions.findEntities(""));
     }, [dispatch]);
 
-    const handleEntityInfo = (entity) => {
-        navigate(`/loans/entity/${entity.id}`);
-    };
 
     const renderEntityInfo = (entity) => (
         <div>
@@ -47,7 +44,6 @@ const EntityAdmin = () => {
                     searchAction={actions.findEntities}
                     infoToShow={renderEntityInfo}
                     infoDeleteToShow={renderDeleteEntityInfo}
-                    detailsAction={handleEntityInfo}
                     createAction={() => navigate(`createEntity`)}
                     editAction={handleEdit}
                     deleteAction={handleDelete}

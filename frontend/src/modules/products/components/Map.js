@@ -11,7 +11,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { Alert } from "@mui/material";
-import {BackLink} from "../../common";
 
 const Map = () => {
     const dispatch = useDispatch();
@@ -55,6 +54,39 @@ const Map = () => {
             setMemberList(prevMemberList => [...prevMemberList, newMemberItem]);
         }
     }, [member]);
+
+
+    /*useEffect(() => {
+        const fetchGeocode = async () => {
+            try {
+                while ((memberList && memberList.length) !== (loans && loans.result?.length || 0)) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                const newMarkers = [];
+                    for (const loan of (loans && loans.result)) {
+                        const actualMember = memberList && memberList.find(member => member.data.id === loan.memberId);
+                        if (actualMember && actualMember.data.address) {
+                            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${actualMember.data.address}`);
+                            const data = await response.json();
+                            if (data.length > 0) {
+                                const position = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+                                const existingMarkerIndex = newMarkers.findIndex(marker => marker.position[0] === position[0] && marker.position[1] === position[1]);
+                                if (existingMarkerIndex !== -1) {
+                                    newMarkers[existingMarkerIndex].loanNames.push({ code: loan.productCode, id: loan.productId });
+                                } else {
+                                    newMarkers.push({ position, loanNames: [{ code: loan.productCode, id: loan.productId }] });
+                                }
+                            }
+                        }
+                    }
+                    setMarkers(newMarkers);
+            } catch (error) {
+                console.error('Error fetching geocode:', error);
+            }
+        };
+
+        fetchGeocode();
+    }, [memberList]);*/
 
     useEffect(() => {
         const fetchGeocode = async () => {
@@ -138,8 +170,7 @@ const Map = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0px' }}>
-            <BackLink style={{marginBottom:'20px'}}/>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
             {fetchError && <Alert severity="warning">Error al obtener los datos de geocodificación. Por favor, inténtalo de nuevo más tarde.</Alert>}
             <h5><b><FormattedMessage id="project.statistics.Map.title"/></b></h5>
             <MapContainer center={galicia} zoom={10} style={{ height: '500px', width: '90%', marginTop: '30px' }}>

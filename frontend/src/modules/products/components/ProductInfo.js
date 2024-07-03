@@ -1,12 +1,13 @@
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import * as selectors from '../selectors';
+import * as selectorsLoans from '../../loans/selectors';
 import * as actions from '../actions';
-import React, {useEffect} from "react";
+import * as actionsLoans from '../../loans/actions';
+import React, {useEffect, useState} from "react";
 import {FormattedMessage} from "react-intl";
 import LoansHistory from "../../loans/components/LoansHistory";
 import {findActualLoansByProduct, getLoansByProduct} from "../selectors";
-import BackLink from "../../common/components/BackLink";
 
 const ProductInfo = () => {
     const { id } = useParams();
@@ -21,8 +22,7 @@ const ProductInfo = () => {
     const containerStyleWithoutImage = { display: 'flex', flexDirection: 'row', alignItems: 'center' };
 
     return(
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <BackLink/>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
             <div style={product && product.image ? containerStyleWithImage : containerStyleWithoutImage}>
                 <h3>{product && product.code}</h3>
                 {product && product.image && (
@@ -43,7 +43,7 @@ const ProductInfo = () => {
                 </div>
 
                 <div>
-                    <p style={{ marginBottom: '5px' }}><b><FormattedMessage id="project.products.ProductInfo.type"/></b> {product && product.type} </p>
+                    <p style={{ marginBottom: '10px' }}><b><FormattedMessage id="project.products.ProductInfo.type"/></b> {product && product.type} </p>
                 </div>
                 <div>
                     <p style={{ marginBottom: '5px' }}><b><FormattedMessage id="project.products.ProductInfo.subtype"/></b> {product && product.subtype} </p>
@@ -55,7 +55,7 @@ const ProductInfo = () => {
                     <p style={{ marginBottom: '5px' }}><b><FormattedMessage id="project.products.ProductInfo.observations"/></b> {product && product.observations} </p>
                 </div>
                 <div>
-                    <p style={{ marginBottom: '0px', marginRight:'31px' }}><b><FormattedMessage id="project.products.ProductInfo.state"/></b>
+                    <p style={{ marginBottom: '5px', marginRight:'31px' }}><b><FormattedMessage id="project.products.ProductInfo.state"/></b>
                         {product && product.state === 'NOT_LOAN' ? <FormattedMessage id="project.products.ProductInfo.state.noLoan"/> : <FormattedMessage id="project.products.ProductInfo.state.loan"/>}
                     </p>
                 </div>

@@ -77,7 +77,7 @@ public class MemberController {
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteEntity(@PathVariable Long id) throws InstanceNotFoundException {
+	public void deleteMember(@PathVariable Long id) throws InstanceNotFoundException {
 		memberService.deleteMember(id);
 	}
 	

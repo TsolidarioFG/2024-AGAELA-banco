@@ -61,7 +61,7 @@ const RegisterManualDevolution = () => {
                     <select className="form-control" value={product || ''} onChange={(e) => setProduct(e.target.value)} required>
                         <option value="" disabled hidden>{intl.formatMessage({ id: 'project.loans.RegisterManualLoan.selectProduct' })}</option>
                         {loanproducts && loanproducts.map(product => (
-                            <option key={product.id} value={product.id}>{product.productName} ({product.code})</option>
+                            <option key={product.id} value={product.id}>{product.productName}</option>
                         ))}
                     </select>
                 </div>

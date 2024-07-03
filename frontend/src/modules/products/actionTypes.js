@@ -4,3 +4,5 @@ export const CLEAR_PRODUCT_SEARCH = "project/products/clearProductSearch";
 export const FIND_PRODUCT_BY_ID_COMPLETED = "project/products/findProductByIdCompleted";
 export const FIND_LOANS_BY_PRODUCT_COMPLETED = "project/products/findLoansByProductCompleted";
 
+export const FIND_PRODUCTS_FAILED = "project/products/findProductsFailed";
+

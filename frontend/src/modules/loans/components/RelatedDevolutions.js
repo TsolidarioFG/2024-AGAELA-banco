@@ -31,14 +31,14 @@ const RelatedDevolutions = () => {
 
     useEffect(() => {
         if (memberId) {
-            dispatch(actions.findLoansByMember(memberId, "", null, null));
+            dispatch(actions.findLoansByMember(memberId));
             dispatch(actions.findMemberById(memberId, errors => setBackendErrors(errors)));
         }
     }, [memberId]);
 
     useEffect(() => {
         if (entityId) {
-            dispatch(actions.findLoansByEntity(entityId, "", null, null));
+            dispatch(actions.findLoansByEntity(entityId));
             dispatch(actions.findEntityById(entityId, errors => setBackendErrors(errors)));
         }
     }, [entityId]);
@@ -48,7 +48,7 @@ const RelatedDevolutions = () => {
         if (loanToSelect) {
             setSelectedLoans([loanToSelect.id]);
         }
-    }, [loans, productId]);
+    }, []);
 
     const handleSelectLoan = (loanId) => {
         setSelectedLoans(prevSelectedLoans => {

@@ -37,11 +37,11 @@ const LoanItem = ({ loan, showOwner }) => {
     return (
         <div key={loan.id} className="card border-dark" style={{ backgroundColor: '#DED8FE', marginBottom: '15px', display: 'flex', flexDirection: 'column'}}>
             {showOwner ? (
-                <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+                <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', width: '100%', height:'50px' }}>
                     <div><h5><b>{dateTime}</b></h5></div>
                 </div>
             ): (
-                <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+                <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', width: '100%', height:'50px' }}>
                     <div><h5><b>{loan.productName}</b></h5></div>
                     <div style={{textAlign: 'right' }}>
                         <h6><b>{dateTime}</b></h6>

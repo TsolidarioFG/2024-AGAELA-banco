@@ -10,15 +10,14 @@ const AdminButtons = () => {
     const isAdmin = useSelector(selectors.isAdmin);
 
     return (
-        <div className="admin-buttons-container">
-
+        <div>
             {loggedIn && isAdmin &&
                 <>
-                    <Link to="/admin-products" className="button-principal button-space"><FormattedMessage id="project.admin.AdminButtons.products"/></Link>
-                    <Link to="/admin-loans" className="button-principal button-space"><FormattedMessage id="project.admin.AdminButtons.loans"/></Link>
-                    <Link to="/admin-members" className="button-principal button-space"><FormattedMessage id="project.admin.AdminButtons.members"/></Link>
-                    <Link to="/admin-entities" className="button-principal button-space"><FormattedMessage id="project.admin.AdminButtons.entities"/></Link>
-                    <Link to="/admin-users" className="button-principal button-space"><FormattedMessage id="project.admin.AdminButtons.users"/></Link>
+                    <div style={{marginBottom:'40px'}}><Link to="/admin-products" className="button-principal"><FormattedMessage id="project.admin.AdminButtons.products"/></Link></div>
+                    <div style={{marginBottom:'40px'}}><Link to="/admin-loans" className="button-principal"><FormattedMessage id="project.admin.AdminButtons.loans"/></Link></div>
+                    <div style={{marginBottom:'40px'}}><Link to="/admin-members" className="button-principal"><FormattedMessage id="project.admin.AdminButtons.members"/></Link></div>
+                    <div style={{marginBottom:'40px'}}><Link to="/admin-entities" className="button-principal"><FormattedMessage id="project.admin.AdminButtons.entities"/></Link></div>
+                    <div><Link to="/admin-users" className="button-principal"><FormattedMessage id="project.admin.AdminButtons.users"/></Link></div>
                 </>
             }
         </div>

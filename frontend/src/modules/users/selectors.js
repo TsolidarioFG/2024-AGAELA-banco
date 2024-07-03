@@ -6,8 +6,10 @@ export const getUser = state =>
 export const isLoggedIn = state =>
     getUser(state) !== null
 
-export const getUserName = state => 
-    isLoggedIn(state) ? getUser(state).userName : null;
+/*export const getUserName = state =>
+    isLoggedIn(state) ? getUser(state).userName : null;*/
+export const getUserName = state =>
+    isLoggedIn(state) ? getUser(state).data.perfil.email : null;
 
 export const isAdmin = state =>
     isLoggedIn(state) && getUser(state).role === "ADMIN";

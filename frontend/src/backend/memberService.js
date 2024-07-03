@@ -1,7 +1,30 @@
 import {appFetch, config} from "./appFetch";
 
-export const findMembers = (keywords, onSuccess) => {
+/*export const findMembers = (keywords, onSuccess) => {
     appFetch(`/members?keywords=${keywords}`, config('GET'), onSuccess);
+};*/
+
+
+export const findMembers = (pagina, limit, busqueda, onSuccess) => {
+    let url = "/socios";
+    const params = new URLSearchParams();
+
+    if (pagina !== undefined && pagina !== null) {
+        params.append('pagina', pagina);
+    }
+    if (limit !== undefined && limit !== null) {
+        params.append('limit', limit);
+    }
+
+    if (busqueda) {
+        params.append('busqueda', busqueda);
+    }
+
+    if (params.toString()) {
+        url += `?${params.toString()}`;
+    }
+
+    appFetch(url, config('GET'), onSuccess);
 };
 
 export const findMemberById = (id, onSuccess, onErrors) =>

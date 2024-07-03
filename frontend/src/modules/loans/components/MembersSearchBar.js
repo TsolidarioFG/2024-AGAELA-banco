@@ -18,7 +18,7 @@ const MembersSearchBar = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(actions.findMembers(searchTerm));
+        dispatch(actions.findMembers(0, 0, searchTerm));
         setHasSearched(true);
     };
 
@@ -58,8 +58,8 @@ const MembersSearchBar = (props) => {
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "40px", maxHeight: '500px', overflowY: 'auto'}}>
                     <ul style={{ listStyleType: "none", padding: 0 }}>
-                        {members.result &&
-                            members.result.map((member) => (
+                        {members.data &&
+                            members.data.map((member) => (
                                 <li
                                     key={member.id}
                                     onClick={() => handleMemberClick(member.id)}
@@ -72,10 +72,10 @@ const MembersSearchBar = (props) => {
                                         width:'300px'
                                     }}
                                 >
-                                    {`${member.firstName} ${member.lastName}`}
+                                    {`${member.nombre} ${member.apellido1} ${member.apellido2}`}
                                 </li>
                             ))}
-                        {(!members.result || members.result.length === 0) && hasSearched &&
+                        {(!members.data || members.data.length === 0) && hasSearched &&
                             <FormattedMessage id="project.loans.MembersSearchBar.noMember" />
                         }
                     </ul>

@@ -22,7 +22,8 @@ const ProductsSearchBar = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(actions.findProducts(searchTerm, productState));
+        //dispatch(actions.findProducts(searchTerm, productState));
+        dispatch(actions.findProducts(0, 0, searchTerm));
     };
 
     const handleProductClick = (productId) => {
@@ -63,8 +64,8 @@ const ProductsSearchBar = () => {
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "40px", maxHeight: '490px', overflowY: 'auto'}}>
                     <ul style={{ listStyleType: "none", padding: 0 }}>
-                        {products.result &&
-                            products.result.map((product) => (
+                        {products && products.data &&
+                            products.data.map((product) => (
                                 <li
                                     key={product.id}
                                     onClick={() => handleProductClick(product.id)}
@@ -77,7 +78,7 @@ const ProductsSearchBar = () => {
                                         width:'300px'
                                     }}
                                 >
-                                    {`${product.productName} ( ${product.code} )`}
+                                    {`${product.nombre} ( ${product.codigoProducto} )`}
                                 </li>
                             ))}
                     </ul>

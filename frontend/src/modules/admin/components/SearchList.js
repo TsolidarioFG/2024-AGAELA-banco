@@ -80,7 +80,7 @@ function SearchList({title, component, infoToShow, infoDeleteToShow, searchActio
                     padding: "10px",
                     marginBottom: "10px",
                     cursor: "pointer",
-                    width:"100%",
+                    width: '300px',
                     justifyContent: "space-between",
                 }}
             >
@@ -100,7 +100,7 @@ function SearchList({title, component, infoToShow, infoDeleteToShow, searchActio
     };
 
     return (
-        <div className="search-list-container">
+        <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px" }}>
                 {title && (
                     <div style={{ display: "flex", justifyContent: "center", marginBottom: "40px", textAlign: 'center' }}>
@@ -110,14 +110,14 @@ function SearchList({title, component, infoToShow, infoDeleteToShow, searchActio
                     </div>
                 )}
                 {searchAction && createAction && (
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "50px", width:"100%" }}>
-                        <div style={{ display: "flex", alignItems: "center", width:"100%"}}>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "50px" }}>
+                        <div style={{ display: "flex", alignItems: "center", width: '100%' }}>
                             <input
                                 type='text'
                                 placeholder='Buscar...'
                                 value={searchTerm}
                                 onChange={handleChange}
-                                style={{ flex: "1", marginRight: "20px", padding: "8px", width:"100%"}}
+                                style={{ flex: "1", marginRight: "20px", padding: "8px", width:'240px'}}
                             />
                             <IconButton onClick={handleCreateClick} style={{ backgroundColor: "#74cc78", borderRadius: "50%", padding: "8px" }}>
                                 <AddIcon style={{ color: "#FFFFFF" }} />
@@ -126,7 +126,7 @@ function SearchList({title, component, infoToShow, infoDeleteToShow, searchActio
                     </div>
                 )}
 
-                <div style={{ display: "flex", flexDirection: "column", width:"100%", marginTop: "10px", maxHeight: '500px', overflowY: 'auto' }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "10px", maxHeight: '500px', overflowY: 'auto' }}>
                     <ul style={{ listStyleType: "none", padding: 0 }}>
                         {renderComponentList()}
                         {((!component.result && !Array.isArray(component)) || (Array.isArray(component) && component.length === 0)) && hasSearched &&

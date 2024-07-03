@@ -23,7 +23,7 @@ const products = (state = initialState.products, action) => {
 
 }
 
-const productSearch = (state = initialState.productSearch, action) => {
+/*const productSearch = (state = initialState.productSearch, action) => {
 
     switch (action.type) {
 
@@ -35,7 +35,28 @@ const productSearch = (state = initialState.productSearch, action) => {
 
     }
 
-}
+}*/
+
+const productSearch = (state = initialState, action) => {
+    switch (action.type) {
+        case actionTypes.FIND_PRODUCTS_COMPLETED:
+            return {
+                ...state,
+                productSearch: action.productSearch,
+                //error: null
+            };
+            //return action.productSeach;
+
+        /*case actionTypes.FIND_PRODUCTS_FAILED:
+            return {
+                ...state,
+                error: action.error // Este error debe ser un objeto serializable
+            };*/
+
+        default:
+            return state;
+    }
+};
 
 const product = (state = initialState.product, action) => {
 

@@ -50,9 +50,9 @@ const EntitySearchBar = (props) => {
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "40px", maxHeight: '500px', overflowY: 'auto'}}>
-                    {entities.result && hasSearched &&
                     <ul style={{ listStyleType: "none", padding: 0 }}>
-                        {entities.result.map((entity) => (
+                        {entities.result &&
+                            entities.result.map((entity) => (
                                 <li
                                     key={entity.id}
                                     onClick={() => handleEntityClick(entity.id)}
@@ -72,7 +72,6 @@ const EntitySearchBar = (props) => {
                             <FormattedMessage id="project.loans.MembersSearchBar.noMember" />
                         }
                     </ul>
-                    }
                 </div>
             </div>
         </div>

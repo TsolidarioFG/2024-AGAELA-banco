@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from "react-intl";
 import {useLocation,} from 'react-router-dom';
-import {BackLink} from "../../../common";
 
 const LoanDetails = () => {
     const location = useLocation();
@@ -14,8 +13,6 @@ const LoanDetails = () => {
     const devolutionDate = loan.devolution ? new Date(loan.devolution).toLocaleString() : null;
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <BackLink/>
         <div className="card" style={{ maxWidth: '600px', margin: '0 auto' }}>
             <div className="card-body">
                 {loan.memberId && <p className="card-text mb-4"><b><FormattedMessage id="project.loans.LoanInfo.member"/></b>{loan.memberName}</p>}
@@ -41,7 +38,6 @@ const LoanDetails = () => {
                     <p className="card-text mb-4"><b><FormattedMessage id="project.admin.loans.LoanDetails.state"/> </b>{loan.devolution ? <FormattedMessage id="project.admin.loans.LoanDetails.returned" values={{ date: devolutionDate }} /> : <FormattedMessage id="project.admin.loans.LoanDetails.onLoan" />}</p>
                 </div>
             </div>
-        </div>
         </div>
     );
 };

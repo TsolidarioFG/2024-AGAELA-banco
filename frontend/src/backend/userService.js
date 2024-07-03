@@ -1,15 +1,15 @@
 import {config, appFetch, setServiceToken, getServiceToken, removeServiceToken, setReauthenticationCallback} from './appFetch';
 
-export const login = (userName, password, onSuccess, onErrors, reauthenticationCallback) =>
+/*export const login = (userName, password, onSuccess, onErrors, reauthenticationCallback) =>
     appFetch('/users/login', config('POST', {userName, password}),
         authenticatedUser => {
             setServiceToken(authenticatedUser.serviceToken);
             setReauthenticationCallback(reauthenticationCallback);
             onSuccess(authenticatedUser);
         },
-        onErrors);
+        onErrors);*/
 
-export const tryLoginFromServiceToken = (onSuccess, reauthenticationCallback) => {
+/*export const tryLoginFromServiceToken = (onSuccess, reauthenticationCallback) => {
 
     const serviceToken = getServiceToken();
 
@@ -25,13 +25,13 @@ export const tryLoginFromServiceToken = (onSuccess, reauthenticationCallback) =>
         () => removeServiceToken()
     );
 
-}
+}*/
 
 export const signUp = (user, onSuccess, onErrors, reauthenticationCallback) => {
 
     appFetch('/users/signUp', config('POST', user),
         authenticatedUser => {
-            setServiceToken(authenticatedUser.serviceToken);
+            setServiceToken(authenticatedUser.serviceToken); //.data.token
             setReauthenticationCallback(reauthenticationCallback);
             onSuccess(authenticatedUser);
         },
@@ -57,3 +57,16 @@ export const findUsers = (onSuccess) => {
 
 export const deleteUser = (id, onSuccess, onErrors) =>
     appFetch(`/users/${id}`, config('DELETE'), onSuccess, onErrors);
+
+
+
+// ------------------------------------- INTEGRACIÓN -----------------------------------------
+
+export const login = (login, password, onSuccess, onErrors, reauthenticationCallback) =>
+    appFetch('/administradoresProductos/login', config('POST', {login, password}),
+        authenticatedUser => {
+            setServiceToken(authenticatedUser.data.token);
+            setReauthenticationCallback(reauthenticationCallback);
+            onSuccess(authenticatedUser);
+        },
+        onErrors);

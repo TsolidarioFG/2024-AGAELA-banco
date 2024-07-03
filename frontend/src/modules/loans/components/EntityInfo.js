@@ -5,7 +5,6 @@ import * as actions from '../actions';
 import React, {useEffect, useState} from "react";
 import {findActualLoansByEntity, getLoansByEntity} from "../selectors";
 import LoansHistory from "./LoansHistory";
-import BackLink from "../../common/components/BackLink";
 
 const EntityInfo = () => {
     const entity = useSelector(selectors.getEntity);
@@ -24,8 +23,7 @@ const EntityInfo = () => {
     }, [id, dispatch]);
 
     return(
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <BackLink/>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
             <h3>{entity && entity.entityName}</h3>
 
             <LoansHistory

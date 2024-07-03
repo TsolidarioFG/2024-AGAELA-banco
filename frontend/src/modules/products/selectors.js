@@ -3,7 +3,7 @@ import {getLoansByEntity} from "../loans/selectors";
 const getModuleState = state => state.products;
 
 export const findProducts = state =>
-    getModuleState(state).productSearch;
+    getModuleState(state).productSearch.productSearch;
 
 export const getProduct = state =>
     getModuleState(state).product;

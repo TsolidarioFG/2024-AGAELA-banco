@@ -6,7 +6,6 @@ import React, {useEffect, useState} from "react";
 import {FormattedMessage} from "react-intl";
 import LoansHistory from "./LoansHistory";
 import {findActualLoansByMember, getLoansByMember} from "../selectors";
-import BackLink from "../../common/components/BackLink";
 
 const MemberInfo = () => {
     const member = useSelector(selectors.getMember);
@@ -28,8 +27,7 @@ const MemberInfo = () => {
     const memberBirthdate = dateMember.toLocaleDateString();
 
     return(
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <BackLink/>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
             <h3>{member && member.firstName} {member && member.lastName}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', width: '90%', marginTop: '20px' }}>
                     <div>

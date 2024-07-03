@@ -6,15 +6,11 @@ let networkErrorCallback;
 let reauthenticationCallback;
 
 const isJson = response => {
-
     const contentType = response.headers.get("content-type");
-
     return contentType && contentType.indexOf("application/json") !== -1;
-
 }
 
 const handleOkResponse = (response, onSuccess) => {
-
     if (!response.ok) {
         return false;
     }
@@ -33,16 +29,14 @@ const handleOkResponse = (response, onSuccess) => {
     }
 
     return true;
-
 }
 
 const handle4xxResponse = (response, onErrors) => {
-
     if (response.status < 400 || response.status >= 500) {
         return false;
     }
 
-    if (response.status === 401 && reauthenticationCallback){
+    if (response.status === 401 && reauthenticationCallback) {
         reauthenticationCallback();
         return true;
     }
@@ -52,21 +46,17 @@ const handle4xxResponse = (response, onErrors) => {
     }
 
     if (onErrors) {
-
         response.json().then(payload => {
             if (payload.globalError || payload.fieldErrors) {
                 onErrors(payload);
             }
         });
-
     }
 
     return true;
-
 }
 
 const handleResponse = (response, onSuccess, onErrors) => {
-
     if (handleOkResponse(response, onSuccess)) {
         return;
     }
@@ -76,25 +66,22 @@ const handleResponse = (response, onSuccess, onErrors) => {
     }
 
     throw new NetworkError();
-    
 }
 
 export const init = callback => networkErrorCallback = callback;
 
 export const setReauthenticationCallback = callback => reauthenticationCallback = callback;
 
-export const setServiceToken = serviceToken => 
+export const setServiceToken = serviceToken =>
     sessionStorage.setItem(SERVICE_TOKEN_NAME, serviceToken);
 
 export const getServiceToken = () => sessionStorage.getItem(SERVICE_TOKEN_NAME);
 
-export const removeServiceToken = () => 
+export const removeServiceToken = () =>
     sessionStorage.removeItem(SERVICE_TOKEN_NAME);
 
 export const config = (method, body) => {
-
     const config = {};
-
     config.method = method;
 
     if (body) {
@@ -109,20 +96,30 @@ export const config = (method, body) => {
     let serviceToken = getServiceToken();
 
     if (serviceToken) {
-
         if (config.headers) {
-            config.headers['Authorization'] = `Bearer ${serviceToken}`;
+            //config.headers['Authorization'] = `Bearer ${serviceToken}`;
+            config.headers['X-Token'] = `${serviceToken}`; //INTEGRACION
         } else {
-            config.headers = {'Authorization': `Bearer ${serviceToken}`};
+            //config.headers = {'Authorization': `Bearer ${serviceToken}`, 'X-Token' : `${serviceToken}`};
+            config.headers = {'X-Token' : `${serviceToken}`}; //INTEGRACION
         }
-
     }
 
     return config;
-
 }
 
 export const appFetch = (path, options, onSuccess, onErrors) =>
     fetch(`${process.env.REACT_APP_BACKEND_URL}${path}`, options)
         .then(response => handleResponse(response, onSuccess, onErrors))
-        .catch(networkErrorCallback);
+        .catch(error => {
+            const serializedError = {
+                message: error.message,
+                stack: error.stack
+            };
+            if (networkErrorCallback) {
+                networkErrorCallback(serializedError);
+            }
+            if (onErrors) {
+                onErrors(serializedError);
+            }
+        });

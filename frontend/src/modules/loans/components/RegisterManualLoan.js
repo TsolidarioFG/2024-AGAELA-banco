@@ -67,7 +67,7 @@ const RegisterManualLoan = () => {
                             <option value="" disabled hidden>{intl.formatMessage({ id: 'project.loans.RegisterManualLoan.selectProduct' })}</option>
                             {products && products.length > 0 ? (
                                 products.map(product => (
-                                    <option key={product.id} value={product.id}>{product.productName} ({product.code})</option>
+                                    <option key={product.id} value={product.id}>{product.productName}</option>
                                 ))
                             ) : (
                                 <option value="" disabled>{intl.formatMessage({ id: 'project.loans.RegisterManualLoan.noProductsAvailable' })}</option>

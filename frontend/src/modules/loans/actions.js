@@ -1,7 +1,26 @@
 import backend from "../../backend";
 import * as actionTypes from './actionTypes';
+import {clearProductSearch} from "../products/actions";
 
-export const findMembers = keywords => dispatch => {
+export const findMembers = (pagina, limit, busqueda) => dispatch => {
+    dispatch(clearMemberSearch());
+
+    const onSuccess = result => {
+        dispatch(findMembersCompleted(result));
+    };
+    backend.memberService.findMembers(
+        pagina,
+        limit,
+        busqueda,
+        onSuccess
+    );
+};
+
+const findMembersCompleted = memberSearch => ({
+    type: actionTypes.FIND_MEMBERS_COMPLETED,
+    memberSearch
+});
+/*export const findMembers = keywords => dispatch => {
     dispatch(clearMemberSearch());
     backend.memberService.findMembers(keywords, result => {
         dispatch(findMembersCompleted({keywords, result}));
@@ -10,7 +29,7 @@ export const findMembers = keywords => dispatch => {
 const findMembersCompleted = memberSearch => ({
     type: actionTypes.FIND_MEMBERS_COMPLETED,
     memberSearch
-});
+});*/
 
 export const clearMemberSearch = () => ({
    type: actionTypes.CLEAR_MEMBER_SEARCH

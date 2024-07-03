@@ -5,6 +5,7 @@ import QRCode from "qrcode";
 import jsPDF from "jspdf";
 import * as selectors from "../selectors";
 import * as actions from '../actions';
+import Checkbox from '@mui/material/Checkbox';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import {IconButton} from "@mui/material";
 
@@ -17,8 +18,8 @@ const GenerateQRPdf = () => {
     const [selectAll, setSelectAll] = useState(false);
 
     useEffect(() => {
-        dispatch(actions.findProducts(searchTerm, null));
-    }, [searchTerm, dispatch]);
+        dispatch(actions.findProducts());
+    }, [dispatch]);
 
     useEffect(() => {
         if (selectAll) {
@@ -148,6 +149,7 @@ const GenerateQRPdf = () => {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxHeight: '340px', overflowY: 'auto', width: '100%' }}>
                 {products && products.result && products.result
+                    .filter(product => product.code.toLowerCase().includes(searchTerm.toLowerCase()))
                     .map(product => (
                         <li key={product.id} style={{ listStyle: 'none' }}>
                             <label className="product-item">

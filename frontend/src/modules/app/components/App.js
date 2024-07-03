@@ -10,12 +10,12 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         dispatch(users.actions.tryLoginFromServiceToken(
             () => dispatch(users.actions.logout())));
     
-    });
+    });*/
 
     return (
         <div>
